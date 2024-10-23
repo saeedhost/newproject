@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <!-- Header Start -->
+    <div class="container-fluid hero-header bg-light py-5 mb-5">
+        <div class="container py-5">
+            <div class="row g-5 align-items-center">
+                <div class="col">
+                    <h1 class="display-4 mb-3 animated slideInDown text-center">Sign Up</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-xxl">
+        <div class="container">
+            <div class="row g-5 d-flex justify-content-center">
+                <div class="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags == "error" %}
+                            <div class="alert alert-danger" role="alert">
+                                <a href="#" class="alert-link">Error</a>! {{ message }}
+                            </div>
+                            {% elif message.tags == "success" %}
+                            <div class="alert alert-success" role="alert">
+                                <a href="#" class="alert-link">Success</a>! {{ message }}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <form method="post" action="{% url 'Signup' %}">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="fname" name="f_name" placeholder="First Name">
+                                    <label for="fname">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="lname" name="l_name" placeholder="Last Name">
+                                    <label for="lname">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                    <label for="username">Username</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="pass" name="password" placeholder="Password">
+                                    <label for="pass">Password</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="password" class="form-control" id="cpass" name="cpassword" placeholder="Confirm Password">
+                                    <label for="cpass">Confirm Password</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-dark py-3 px-5" type="submit">Register</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row g-5 pt-5">
+                <div class="col d-flex justify-content-center">
+                    <p>Do you have already an Account?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <a href="{% url 'Signin' %}">Sign In </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+{% endblock %}
